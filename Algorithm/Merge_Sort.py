@@ -19,7 +19,7 @@ def merge(left, right):
         else:
             result.append(right[j])
             j += 1
-    result.extend(left[i:]) # list.extend-- adds a list
+    result.extend(left[i:]) # list.extend()-- adds a list
     result.extend(right[j:])
     return result
 
