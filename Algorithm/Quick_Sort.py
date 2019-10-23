@@ -1,3 +1,5 @@
+import pysnooper
+@pysnooper.snoop()
 def quick_sort(data):
     if len(data) >= 2:
         mid = data[len(data) - 1]
