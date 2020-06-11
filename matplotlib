@@ -1,1 +1,47 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+## Stacked bar chart
+labels = ['G1', 'G2', 'G3', 'G4', 'G5']
+men_means = [20, 35 ,30, 35, 27]
+women_means = [25, 32, 34, 20, 25]
+mean_std = [2, 3, 4, 1, 2]
+women_std = [3, 5, 2, 3, 3]
+width = 0.35 # the width of the bars
 
+plt.bar(labels, men_means, width, yerr=mean_std, label='Men')
+plt.bar(labels, women_means, width, yerr=women_std, bottom=men_means,
+       label='Women')
+plt.ylabel('Scores')
+plt.title('Scores by group and gender')
+plt.legend()
+
+
+## Grouped bar chart with labels
+x = np.arange(len(labels))
+
+rects1 = plt.bar(x - width/2, men_means, width, label='Men')
+rects2 = plt.bar(x + width/2, women_means, width, label='Women')
+
+plt.ylabel('Scores')
+plt.title('Score by group and gender')
+plt.xticks(x, labels = labels)
+plt.yticks(range(0, 41, 5))
+plt.legend()
+
+# attach a text label above each bar, displaying its height
+def autolabel(rects):
+    for rect in rects:
+        height = rect.get_height()
+        plt.annotate('{}'.format(height),
+                    xy = (rect.get_x() + rect.get_width() / 2, height),
+                    xytext = (0, 3),
+                    textcoords = 'offset points',
+                    ha = 'center',
+                    va = 'bottom')
+        
+autolabel(rects1)
+autolabel(rects2)
+
+plt.tight_layout()
