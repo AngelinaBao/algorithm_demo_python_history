@@ -45,3 +45,38 @@ autolabel(rects1)
 autolabel(rects2)
 
 plt.tight_layout()
+
+
+## Horizonal bar chart
+np.random.seed(19680801)
+
+plt.rcdefaults()
+
+# example data
+people = ('Tom', 'Dick', 'Harry', 'Slim', 'Jim')
+y_pos = np.arange(len(people))
+performance = 3 + 10 * np.random.rand(len(people))
+error = np.random.rand(len(people))
+
+plt.barh(y_pos, performance, xerr=error)
+plt.yticks(y_pos, labels = people)
+plt.xlabel('Performance')
+plt.title('How fast do you want to go today?')
+
+
+
+
+## Broken Barh
+plt.broken_barh([(110, 30), (150, 10)], (10, 9), facecolors='tab:blue')
+plt.broken_barh([(10, 50), (100, 20), (130, 10)], (20, 9),
+               facecolors=('tab:orange', 'tab:green', 'tab:red'))
+plt.ylim(5, 35)
+plt.xlim(0, 200)
+plt.xlabel('seconds since start')
+plt.yticks([15, 25], labels=['Bill', 'Jim'])
+plt.grid(True)
+plt.annotate('race interrupted', (61, 25),
+            xytext=(0.8, 0.9), textcoords='axes fraction',
+            arrowprops=dict(facecolor='black', shrink=0.05),
+            fontsize=16,
+            horizontalalignment='right', verticalalignment='top')
